@@ -6,8 +6,11 @@ from colorama import Fore
 # License: https://github.com/billythegoat356/pycenter/blob/main/LICENSE
 
 def center(var:str, space:int=None): # From Pycenter
-    if not space:
-        space = (os.get_terminal_size().columns - len(var.splitlines()[int(len(var.splitlines())/2)])) / 2
+    try:
+        if not space:
+            space = (os.get_terminal_size().columns - len(var.splitlines()[int(len(var.splitlines())/2)])) / 2
+    except OSError:
+        space = 10
     
     return "\n".join((' ' * int(space)) + var for var in var.splitlines())
 
